@@ -25,6 +25,8 @@
     <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
     <Platform Condition="'$(Platform)' == ''">Win32</Platform>
     <SampleGuid>{224F1D35-6CD5-408C-822A-A57A2BAABE53}</SampleGuid>
+    <WindowsTargetPlatformVersion>$(LatestTargetPlatformVersion)</WindowsTargetPlatformVersion>
+    <ProjectName>filter</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -79,60 +81,68 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
   </ImportGroup>
-  <ItemGroup Label="WrappedTaskItems">
-    <MofComp Include="wmisamp.mof">
-      <WmiSyntaxCheck>true</WmiSyntaxCheck>
-      <CreateBinaryMofFile>.\$(IntDir)\wmisamp.bmf</CreateBinaryMofFile>
-    </MofComp>
-    <Wmimofck Include=".\$(IntDir)\wmisamp.bmf">
-      <GenerateStructureDefinitionsForMethodParameters>true</GenerateStructureDefinitionsForMethodParameters>
-      <HeaderOutputFile>.\$(IntDir)\wmidata.h</HeaderOutputFile>
-      <VBScriptTestOutputFile>.\$(IntDir)\wmisamp.vbs</VBScriptTestOutputFile>
-      <HexdumpOutputFile>.\$(IntDir)\wmisamp.x</HexdumpOutputFile>
-      <HtmlOutputDirectory>.\$(IntDir)\htm</HtmlOutputDirectory>
-      <HtmlUIOutputDirectory>true</HtmlUIOutputDirectory>
-    </Wmimofck>
-  </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <TargetName>WmiSamp</TargetName>
+    <TargetName>filter</TargetName>
+    <Inf2CatUseLocalTime>true</Inf2CatUseLocalTime>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <TargetName>WmiSamp</TargetName>
+    <TargetName>filter</TargetName>
+    <Inf2CatUseLocalTime>true</Inf2CatUseLocalTime>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <TargetName>WmiSamp</TargetName>
+    <TargetName>filter</TargetName>
+    <Inf2CatUseLocalTime>true</Inf2CatUseLocalTime>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <TargetName>WmiSamp</TargetName>
+    <TargetName>filter</TargetName>
+    <Inf2CatUseLocalTime>true</Inf2CatUseLocalTime>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <ExceptionHandling>
       </ExceptionHandling>
+      <TreatWarningAsError>false</TreatWarningAsError>
     </ClCompile>
+    <Mofcomp>
+      <CreateBinaryMofFile />
+    </Mofcomp>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <ExceptionHandling>
       </ExceptionHandling>
+      <TreatWarningAsError>false</TreatWarningAsError>
     </ClCompile>
+    <Mofcomp>
+      <CreateBinaryMofFile />
+    </Mofcomp>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <ExceptionHandling>
       </ExceptionHandling>
+      <TreatWarningAsError>false</TreatWarningAsError>
     </ClCompile>
+    <Mofcomp>
+      <CreateBinaryMofFile />
+    </Mofcomp>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <ExceptionHandling>
       </ExceptionHandling>
+      <TreatWarningAsError>false</TreatWarningAsError>
     </ClCompile>
+    <Mofcomp>
+      <CreateBinaryMofFile />
+    </Mofcomp>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="WmiHandler.c" />
-    <ClCompile Include="WmiSamp.c" />
-    <ResourceCompile Include="WmiSamp.rc" />
+    <ClCompile Include="FilterData.c" />
+    <ClCompile Include="FilterGeneric.c" />
+    <ClCompile Include="FilterMain.c" />
+    <ClCompile Include="FilterTraceList.c" />
+    <ResourceCompile Include="filter.rc" />
   </ItemGroup>
   <ItemGroup>
     <FilesToPackage Include="$(TargetPath)" Condition="'$(ConfigurationType)'=='Driver' or '$(ConfigurationType)'=='DynamicLibrary'" />
@@ -143,10 +153,10 @@
     <None Exclude="@(None)" Include="*.def;*.bat;*.hpj;*.asmx" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="wmisamp.h" />
+    <ClInclude Include="filter.h" />
   </ItemGroup>
   <ItemGroup>
-    <Inf Include="wmisamp.inx" />
+    <Inf Include="filter.inx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>
